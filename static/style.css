@@ -1,0 +1,50 @@
+#game {
+  display: grid;
+  grid-template-areas:
+    ". up ."
+    "left action right"
+    ". down .";
+  padding: 25px;
+}
+
+button {
+  background-color: #999;
+  padding: 30px 0;
+  color: #fff;
+  font-weight: bold;
+  border: 2px solid black;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: #ddd;
+  color: #555;
+}
+
+#left {
+  border-radius: 15px 0 0 15px;
+  border-right: none;
+  grid-area: left;
+}
+
+#up {
+  border-radius: 15px 15px 0 0;
+  border-bottom: none;
+  grid-area: up;
+}
+
+#right {
+  border-radius: 0 15px 15px 0;
+  border-left: none;
+  grid-area: right;
+}
+
+#down {
+  border-radius: 0 0 15px 15px;
+  border-top: none;
+  grid-area: down;
+}
+
+#action {
+  grid-area: action;
+}

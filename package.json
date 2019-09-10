@@ -1,0 +1,26 @@
+{
+  "name": "blind",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Alan Boglioli <alan.boglioli@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aboglioli/blind.git"
+  },
+  "scripts": {
+    "build": "tsc",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "lint": "tslint -p tsconfig.json"
+  },
+  "dependencies": {
+    "howler": "^2.1.2"
+  },
+  "devDependencies": {
+    "@types/howler": "^2.1.1",
+    "prettier": "^1.18.2",
+    "tslint": "^5.20.0",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.6.2"
+  }
+}
