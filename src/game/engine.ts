@@ -14,7 +14,18 @@ export class Engine implements IEntity {
 
     this.eventListener.addListener((button: Button) => {
       this.steps.stop();
-      this.steps.play();
+      const id = this.steps.play();
+
+      if (button === Button.Left) {
+        this.steps.pos(-2, 0, 0, id);
+      } else if (button === Button.Up) {
+        this.steps.pos(0, 2, 0, id);
+      } else if (button === Button.Right) {
+        this.steps.pos(2, 0, 0, id);
+      } else if (button === Button.Down) {
+        this.steps.pos(0, -2, 0, id);
+      }
+
     });
   }
 
