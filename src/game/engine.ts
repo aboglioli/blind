@@ -1,4 +1,4 @@
-import { IEntity, World } from './entities';
+import { IEntity } from './entities';
 import { Button, EventListener } from './events';
 
 export class Engine implements IEntity {
