@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './ui/App';
+import Main from './ui/Main';
 
 import { Engine } from './game/engine';
 import { World } from './game/entities';
@@ -12,4 +12,4 @@ const world = new World();
 const engine = new Engine(eventListener, world);
 engine.run();
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<Main emitEvent={eventListener.emitEvent} />, document.getElementById('root'));

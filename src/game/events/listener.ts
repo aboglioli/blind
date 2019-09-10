@@ -9,23 +9,14 @@ export class EventListener {
     if (Array.isArray(listeners) && listeners.length > 0) {
       this.listeners = listeners;
     }
-
-    this.startListeners();
   }
 
   public addListener(listener: Listener) {
     this.listeners.push(listener);
   }
 
-  private startListeners() {
-    const buttons = document.querySelectorAll('button');
-
-    buttons.forEach(element => {
-      element.addEventListener('click', () => {
-        this.listeners.forEach(listener => {
-          listener(newButton(element.id));
-        });
-      });
-    });
-  }
+  public emitEvent = (eventName: string) => {
+    const button = newButton(eventName);
+    this.listeners.forEach(listener => listener(button));
+  };
 }
