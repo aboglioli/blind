@@ -1,5 +1,5 @@
 import React from 'react';
-import { useEvents } from './context/useEventManager';
+import { useEvents } from './context';
 import './Main.css';
 
 const Main = () => {

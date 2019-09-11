@@ -27,8 +27,10 @@ export class DefaultEventManager implements IEventManager {
   }
   private static instance: IEventManager;
 
+  // Implementation
   private eventListeners: IEventListener[] = [];
   private id = 0;
+
   private constructor() {}
 
   public subscribe(event: string, listener: Listener): number {

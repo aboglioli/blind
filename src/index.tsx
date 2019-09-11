@@ -2,17 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import Main from './ui/Main';
+import { EventManagerProvider } from './ui/context';
 
-import { Engine } from './game/engine';
-import { DefaultEventManager } from './game/events';
-import { EventManagerProvider } from './ui/context/EventManagerContext';
+import startGame from './game';
 
-const eventManager = DefaultEventManager.getInstance();
-const engine = new Engine(eventManager);
-engine.run();
+const events = startGame();
 
 ReactDOM.render(
-  <EventManagerProvider events={eventManager}>
+  <EventManagerProvider events={events}>
     <Main />
   </EventManagerProvider>,
   document.getElementById('root'),
