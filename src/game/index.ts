@@ -1,8 +1,8 @@
 import {
+  DefaultAudioManager,
+  DefaultEventManager,
   Engine,
   IEventEmitter,
-  DefaultEventManager,
-  DefaultAudioManager,
 } from './managers';
 
 export default function bootstrap(): IEventEmitter {

@@ -1,4 +1,1 @@
-import { IUpdatable } from './updatable';
-
-export class Room {
-}
+export class Room {}

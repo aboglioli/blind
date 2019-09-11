@@ -1,3 +1,5 @@
+import { isMatch } from 'micromatch';
+
 export type Listener = (event: string) => void;
 
 export interface IEventEmitter {
@@ -6,7 +8,6 @@ export interface IEventEmitter {
 
 export interface IEventManager extends IEventEmitter {
   subscribe(event: string, listener: Listener): number;
-  subscribeAll(listener: Listener): number;
   unsubscribe(id: number): void;
 }
 
@@ -34,13 +35,8 @@ export class DefaultEventManager implements IEventManager {
   private constructor() {}
 
   public subscribe(event: string, listener: Listener): number {
-    event = event.toLowerCase();
     this.eventListeners.push({ id: this.id, event, listener });
     return this.id++;
-  }
-
-  public subscribeAll(listener: Listener): number {
-    return this.subscribe('*', listener);
   }
 
   public unsubscribe(id: number) {
@@ -52,7 +48,8 @@ export class DefaultEventManager implements IEventManager {
   public emit(event: string) {
     event = event.toLowerCase();
     this.eventListeners.forEach(eventListener => {
-      if (eventListener.event === '*' || eventListener.event === event) {
+      console.log('isMatch', event, eventListener.event);
+      if (isMatch(event, eventListener.event)) {
         eventListener.listener(event);
       }
     });

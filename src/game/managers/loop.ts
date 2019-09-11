@@ -7,13 +7,13 @@ export interface ILoopManager {
 
 export class LoopManager {
   // Singleton
-  private static instance: ILoopManager;
   public static getInstance(): ILoopManager {
     if (!this.instance) {
       this.instance = new LoopManager();
     }
     return this.instance;
   }
+  private static instance: ILoopManager;
 
   // Implementation
   private running = false;

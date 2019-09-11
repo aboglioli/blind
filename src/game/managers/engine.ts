@@ -1,5 +1,5 @@
-import { IEventManager } from './event';
 import { IAudioManager } from './audio';
+import { IEventManager } from './event';
 
 export class Engine {
   private lastTime = 0.0;
@@ -11,10 +11,12 @@ export class Engine {
     this.audioManager.loadSound('steps', 'steps.mp3');
     this.audioManager.playSound('steps');
 
-    const id = this.eventManager.subscribeAll(event => {
+    // Pattern matching
+    const id = this.eventManager.subscribe('ri*', event => {
       console.log('Event:', event);
     });
 
+    // Full match
     this.eventManager.subscribe('left', () => {
       console.log('Player to left');
       this.eventManager.unsubscribe(id);
