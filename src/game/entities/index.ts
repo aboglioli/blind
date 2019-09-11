@@ -1,4 +1,4 @@
-export * from './entity';
-export * from './cell';
+export * from './updatable';
+export * from '../components/position';
 export * from './room';
 export * from './world';

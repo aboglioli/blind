@@ -1,7 +1,4 @@
-import { IEntity } from './entity';
+import { IUpdatable } from './updatable';
 
-export class Room implements IEntity {
-  public update(delta: number) {
-    // console.log(`Updating Room at ${delta}ms`);
-  }
+export class Room {
 }

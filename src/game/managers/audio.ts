@@ -3,7 +3,7 @@ import { Howl } from 'howler';
 import config from '../config';
 
 export interface IAudioManager {
-  addSound(name: string, file: string): void;
+  loadSound(name: string, file: string): void;
   playSound(name: string): void;
   stopSound(name: string): void;
 }
@@ -24,7 +24,7 @@ export class DefaultAudioManager implements IAudioManager {
 
   private constructor() {}
 
-  public addSound(name: string, file: string) {
+  public loadSound(name: string, file: string) {
     if (this.sounds[name]) {
       throw new Error('Audio file already exists');
     }

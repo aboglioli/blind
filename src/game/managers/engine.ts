@@ -1,15 +1,14 @@
-import { IEntity } from '../entities';
 import { IEventManager } from './event';
 import { IAudioManager } from './audio';
 
-export class Engine implements IEntity {
+export class Engine {
   private lastTime = 0.0;
 
   constructor(
     private eventManager: IEventManager,
     private audioManager: IAudioManager,
   ) {
-    this.audioManager.addSound('steps', 'steps.mp3');
+    this.audioManager.loadSound('steps', 'steps.mp3');
     this.audioManager.playSound('steps');
 
     const id = this.eventManager.subscribeAll(event => {
