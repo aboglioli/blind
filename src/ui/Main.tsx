@@ -6,11 +6,11 @@ const Main = () => {
   const events = useEventManager();
   return (
     <div id="game">
-      <button id="left" onClick={() => events.emitEvent('LEFT')} />
-      <button id="up" onClick={() => events.emitEvent('UP')} />
-      <button id="right" onClick={() => events.emitEvent('RIGHT')} />
-      <button id="down" onClick={() => events.emitEvent('DOWN')} />
-      <button id="action" onClick={() => events.emitEvent('ACTION')} />
+      <button id="left" onClick={() => events.emitEvent('LEFT')}>Left</button>
+      <button id="up" onClick={() => events.emitEvent('UP')}>Up</button>
+      <button id="right" onClick={() => events.emitEvent('RIGHT')}>Right</button>
+      <button id="down" onClick={() => events.emitEvent('DOWN')}>Down</button>
+      <button id="action" onClick={() => events.emitEvent('ACTION')}>Use</button>
     </div>
   );
 };

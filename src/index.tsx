@@ -4,13 +4,11 @@ import './index.css';
 import Main from './ui/Main';
 
 import { Engine } from './game/engine';
-import { World } from './game/entities';
 import { DefaultEventManager } from './game/events';
 import { EventManagerProvider } from './ui/context/EventManagerContext';
 
-const eventManager = new DefaultEventManager();
-const world = new World();
-const engine = new Engine(eventManager, world);
+const eventManager = DefaultEventManager.getInstance();
+const engine = new Engine(eventManager);
 engine.run();
 
 ReactDOM.render(

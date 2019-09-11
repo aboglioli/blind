@@ -9,19 +9,22 @@ export interface IEventManager {
 
 export class DefaultEventManager implements IEventManager {
   private listeners: Listener[] = [];
+  private static instance: IEventManager;
 
-  constructor(...listeners: Listener[]) {
-    if (Array.isArray(listeners) && listeners.length > 0) {
-      this.listeners = listeners;
+  static getInstance(): IEventManager {
+    if (!this.instance) {
+      this.instance = new DefaultEventManager();
     }
+
+    return this.instance;
   }
 
   public addListener(listener: Listener) {
     this.listeners.push(listener);
   }
 
-  public emitEvent = (eventName: string) => {
-    const button = newButton(eventName);
+  public emitEvent = (event: string) => {
+    const button = newButton(event);
     this.listeners.forEach(listener => listener(button));
   };
 }

@@ -7,7 +7,7 @@ export class Engine implements IEntity {
   private lastTime = 0.0;
   private steps: Howl;
 
-  constructor(private eventManager: IEventManager, private world: IEntity) {
+  constructor(private eventManager: IEventManager) {
     this.steps = new Howl({
       src: ['assets/steps.mp3'],
     });
@@ -28,8 +28,11 @@ export class Engine implements IEntity {
     });
   }
 
+  public getEventManager(): IEventManager {
+    return this.eventManager;
+  }
+
   public update(delta: number) {
-    this.world.update(delta);
   }
 
   public frame = (time: number) => {

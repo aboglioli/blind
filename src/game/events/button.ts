@@ -4,19 +4,23 @@ export enum Button {
   Right = 'RIGHT',
   Down = 'DOWN',
   Action = 'ACTION',
+  Unknown = 'UNKNOWN',
 }
 
 export const newButton = (id: string): Button => {
+  id = id.toUpperCase();
   switch (id) {
-    case 'left':
+    case 'LEFT':
       return Button.Left;
-    case 'up':
+    case 'UP':
       return Button.Up;
-    case 'right':
+    case 'RIGHT':
       return Button.Right;
-    case 'down':
+    case 'DOWN':
       return Button.Down;
-    default:
+    case 'ACTION':
       return Button.Action;
+    default:
+      return Button.Unknown;
   }
 };
