@@ -2,7 +2,12 @@ import { Button, newButton } from './button';
 
 export type Listener = (button: Button) => void;
 
-export class EventListener {
+export interface IEventListener {
+  addListener(listener: Listener): void;
+  emitEvent(event: string): void;
+}
+
+export class DefaultEventListener implements IEventListener {
   private listeners: Listener[] = [];
 
   constructor(...listeners: Listener[]) {

@@ -1,5 +1,5 @@
 import { IEntity } from './entities';
-import { Button, EventListener } from './events';
+import { Button, DefaultEventListener, IEventListener } from './events';
 
 import { Howl } from 'howler';
 
@@ -7,7 +7,7 @@ export class Engine implements IEntity {
   private lastTime = 0.0;
   private steps: Howl;
 
-  constructor(private eventListener: EventListener, private world: IEntity) {
+  constructor(private eventListener: IEventListener, private world: IEntity) {
     this.steps = new Howl({
       src: ['assets/steps.mp3'],
     });
@@ -25,7 +25,6 @@ export class Engine implements IEntity {
       } else if (button === Button.Down) {
         this.steps.pos(0, -2, 0, id);
       }
-
     });
   }
 
