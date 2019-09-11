@@ -17,6 +17,7 @@
     "lint": "tslint -p tsconfig.json"
   },
   "dependencies": {
+    "firebase": "^6.6.0",
     "howler": "^2.1.2",
     "micromatch": "^4.0.2",
     "react": "^16.9.0",
