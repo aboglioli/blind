@@ -14,7 +14,9 @@ interface IProviderProps extends IContext {
 }
 
 export const EventManagerProvider = ({ events, children }: IProviderProps) => (
-  <EventManagerContext.Provider value={{ events }}>{children}</EventManagerContext.Provider>
+  <EventManagerContext.Provider value={{ events }}>
+    {children}
+  </EventManagerContext.Provider>
 );
 
 export default EventManagerContext;

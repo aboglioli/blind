@@ -1,5 +1,5 @@
 import { IEntity } from './entities';
-import { Button, IEventManager } from './events';
+import { IEventManager } from './events';
 
 import { Howl } from 'howler';
 
@@ -12,20 +12,15 @@ export class Engine implements IEntity {
       src: ['assets/steps.mp3'],
     });
 
-    this.eventManager.addListener((button: Button) => {
-      this.steps.stop();
-      const id = this.steps.play();
-
-      if (button === Button.Left) {
-        this.steps.pos(-2, 0, 0, id);
-      } else if (button === Button.Up) {
-        this.steps.pos(0, 2, 0, id);
-      } else if (button === Button.Right) {
-        this.steps.pos(2, 0, 0, id);
-      } else if (button === Button.Down) {
-        this.steps.pos(0, -2, 0, id);
-      }
+    const id = this.eventManager.subscribeAll(event => {
+      console.log('Event:', event);
     });
+
+    this.eventManager.subscribe('left', () => {
+      console.log('Player to left');
+      this.eventManager.unsubscribe(id);
+    });
+
   }
 
   public getEventManager(): IEventManager {

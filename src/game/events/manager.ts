@@ -1,13 +1,19 @@
-import { Button, newButton } from './button';
-
-export type Listener = (button: Button) => void;
+export type Listener = (event: string) => void;
 
 export interface IEventEmitter {
-  emit(event: string): void;
+  emit: Listener;
 }
 
 export interface IEventManager extends IEventEmitter {
-  addListener(listener: Listener): void;
+  subscribe(event: string, listener: Listener): number;
+  subscribeAll(listener: Listener): number;
+  unsubscribe(id: number): void;
+}
+
+interface IEventListener {
+  id: number;
+  event: string;
+  listener: Listener;
 }
 
 export class DefaultEventManager implements IEventManager {
@@ -21,15 +27,32 @@ export class DefaultEventManager implements IEventManager {
   }
   private static instance: IEventManager;
 
-  private listeners: Listener[] = [];
+  private eventListeners: IEventListener[] = [];
+  private id = 0;
   private constructor() {}
 
-  public addListener(listener: Listener) {
-    this.listeners.push(listener);
+  public subscribe(event: string, listener: Listener): number {
+    event = event.toLowerCase();
+    this.eventListeners.push({ id: this.id, event, listener });
+    return this.id++;
+  }
+
+  public subscribeAll(listener: Listener): number {
+    return this.subscribe('*', listener);
+  }
+
+  public unsubscribe(id: number) {
+    this.eventListeners = this.eventListeners.filter(
+      eventListener => eventListener.id !== id,
+    );
   }
 
   public emit(event: string) {
-    const button = newButton(event);
-    this.listeners.forEach(listener => listener(button));
+    event = event.toLowerCase();
+    this.eventListeners.forEach(eventListener => {
+      if (eventListener.event === '*' || eventListener.event === event) {
+        eventListener.listener(event);
+      }
+    });
   }
 }
