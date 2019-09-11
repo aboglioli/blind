@@ -12,7 +12,7 @@ const engine = new Engine(eventManager);
 engine.run();
 
 ReactDOM.render(
-  <EventManagerProvider eventManager={eventManager}>
+  <EventManagerProvider events={eventManager}>
     <Main />
   </EventManagerProvider>,
   document.getElementById('root'),

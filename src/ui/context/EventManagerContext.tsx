@@ -1,20 +1,20 @@
 import React, { createContext } from 'react';
-import { DefaultEventManager, IEventManager } from '../../game/events';
+import { DefaultEventManager, IEventEmitter } from '../../game/events';
 
 export interface IContext {
-  eventManager: IEventManager;
+  events: IEventEmitter;
 }
 
 const EventManagerContext = createContext<IContext>({
-  eventManager: new DefaultEventManager(),
+  events: DefaultEventManager.getInstance(),
 });
 
 interface IProviderProps extends IContext {
   children: React.ReactNode;
 }
 
-export const EventManagerProvider = ({ eventManager, children }: IProviderProps) => (
-  <EventManagerContext.Provider value={{ eventManager }}>{children}</EventManagerContext.Provider>
+export const EventManagerProvider = ({ events, children }: IProviderProps) => (
+  <EventManagerContext.Provider value={{ events }}>{children}</EventManagerContext.Provider>
 );
 
 export default EventManagerContext;

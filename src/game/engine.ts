@@ -33,6 +33,7 @@ export class Engine implements IEntity {
   }
 
   public update(delta: number) {
+    // TODO: Is it necessary?
   }
 
   public frame = (time: number) => {
