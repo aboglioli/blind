@@ -5,11 +5,17 @@ import Main from './ui/Main';
 
 import { Engine } from './game/engine';
 import { World } from './game/entities';
-import { EventListener } from './game/events';
+import { DefaultEventManager } from './game/events';
+import { EventManagerProvider } from './ui/context/EventManagerContext';
 
-const eventListener = new EventListener();
+const eventManager = new DefaultEventManager();
 const world = new World();
-const engine = new Engine(eventListener, world);
+const engine = new Engine(eventManager, world);
 engine.run();
 
-ReactDOM.render(<Main emitEvent={eventListener.emitEvent} />, document.getElementById('root'));
+ReactDOM.render(
+  <EventManagerProvider eventManager={eventManager}>
+    <Main />
+  </EventManagerProvider>,
+  document.getElementById('root'),
+);
