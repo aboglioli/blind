@@ -1,3 +1,4 @@
+import { sleep } from './helpers';
 import {
   DefaultAudioManager,
   DefaultEventManager,
@@ -44,7 +45,8 @@ export default async function bootstrap() {
   });
 
   event.emit('engine.ready');
-  await event.subscribeAsync('ui.ready');
+  event.emit('ui.activate');
+  await sleep(2000);
 
   // Main scripts using events for communication
   await selectAlternative([{ id: 0, text: 'Comenzar' }]);

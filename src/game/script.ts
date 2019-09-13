@@ -1,10 +1,5 @@
+import { sleep } from './helpers';
 import { DefaultAudioManager, selectAlternative } from './managers';
-
-const sleep = (time: number) => {
-  return new Promise(resolve => {
-    setTimeout(resolve, time);
-  });
-};
 
 const audio = DefaultAudioManager.getInstance();
 

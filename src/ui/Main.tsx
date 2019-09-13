@@ -4,7 +4,7 @@ import Alternatives from './Alternatives';
 import { useWaitEvent } from './context';
 
 const Main = () => {
-  const { loading } = useWaitEvent('engine.ready');
+  const { loading } = useWaitEvent('ui.activate');
 
   if (loading) {
     return <b>Cargando...</b>;

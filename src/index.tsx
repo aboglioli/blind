@@ -18,10 +18,6 @@ async function bootstrap() {
     </EventManagerProvider>,
     document.getElementById('root'),
   );
-
-  setTimeout(() => {
-    eventManager.emit('ui.ready');
-  }, 500);
 }
 
 bootstrap();
