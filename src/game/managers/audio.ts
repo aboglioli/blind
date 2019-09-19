@@ -2,10 +2,21 @@ import { Howl } from 'howler';
 
 import config from '../config';
 
+export interface IProperties extends Partial<IHowlProperties> {}
+
+export interface IPlayOptions {
+  pos?: {
+    x?: number;
+    y?: number;
+    z?: number;
+  };
+  volume?: number;
+}
+
 export interface IAudioManager {
-  loadSound(name: string, file: string): void;
-  playSound(name: string): void;
-  stopSound(name: string): void;
+  load(name: string, file: string, properties?: IProperties): void;
+  play(name: string, sprite?: string, options?: IPlayOptions): void;
+  stop(name: string): void;
 }
 
 export class DefaultAudioManager implements IAudioManager {
@@ -24,23 +35,54 @@ export class DefaultAudioManager implements IAudioManager {
 
   private constructor() {}
 
-  public loadSound(name: string, file: string) {
-    if (this.sounds[name]) {
-      throw new Error('Audio file already exists');
-    }
+  public async load(name: string, file: string, properties?: IProperties) {
+    return new Promise((resolve, reject) => {
+      if (this.sounds[name]) {
+        return reject(new Error('Audio file already exists'));
+      }
 
-    this.sounds[name] = new Howl({
-      src: [`${config.assetsDir}/${file}`],
+      this.sounds[name] = new Howl({
+        ...properties,
+        src: [`${config.assetsDir}/${file}`],
+      });
+
+      this.sounds[name].on('load', () => {
+        resolve();
+      });
     });
   }
 
-  public playSound(name: string) {
-    if (this.sounds[name]) {
-      this.sounds[name].play();
-    }
+  public async play(name: string, sprite?: string, options?: IPlayOptions) {
+    const { pos, volume }: IPlayOptions = options || {};
+
+    return new Promise((resolve, reject) => {
+      const sound = this.sounds[name];
+
+      if (sound) {
+        if (pos) {
+          sound.pos(pos.x || 0, pos.y || 0, pos.z || 0);
+        }
+
+        if (volume) {
+          sound.volume(volume);
+        }
+
+        sound.loop();
+
+        if (sprite) {
+          sound.play(sprite);
+        } else {
+          sound.play();
+        }
+
+        sound.on('end', () => {
+          resolve();
+        });
+      }
+    });
   }
 
-  public stopSound(name: string) {
+  public stop(name: string) {
     if (this.sounds[name]) {
       this.sounds[name].stop();
     }

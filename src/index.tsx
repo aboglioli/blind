@@ -1,16 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Main from './ui/Main';
 import { EventManagerProvider } from './ui/context';
+import Main from './ui/Main';
 
 import startGame from './game';
+import { DefaultEventManager } from './game/managers';
 
-const events = startGame();
+async function bootstrap() {
+  startGame();
 
-ReactDOM.render(
-  <EventManagerProvider events={events}>
-    <Main />
-  </EventManagerProvider>,
-  document.getElementById('root'),
-);
+  const eventManager = DefaultEventManager.getInstance();
+
+  ReactDOM.render(
+    <EventManagerProvider events={eventManager}>
+      <Main />
+    </EventManagerProvider>,
+    document.getElementById('root'),
+  );
+}
+
+bootstrap();

@@ -1,0 +1,9 @@
+#alternatives {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid #222;
+  padding: 20px;
+  text-align: center;
+  color: #fff;
+  font-weight: bold;
+}

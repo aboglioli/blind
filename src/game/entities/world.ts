@@ -1,2 +1,1 @@
-export class World {
-}
+export class World {}

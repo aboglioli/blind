@@ -1,8 +1,8 @@
 import React, { createContext } from 'react';
-import { DefaultEventManager, IEventEmitter } from '../../game/managers';
+import { DefaultEventManager, IEventManager } from '../../game/managers';
 
 export interface IContext {
-  events: IEventEmitter;
+  events: IEventManager;
 }
 
 export const EventManagerContext = createContext<IContext>({
