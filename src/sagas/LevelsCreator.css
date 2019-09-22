@@ -2,15 +2,17 @@
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  align-items: center;
-  overflow: hidden;
+  align-items: flex-start;
+  overflow: auto;
+  padding-left: 2vw;
 }
 
 .base_moments {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
+  min-width: 5vw;
 }
 
 .base_title {
