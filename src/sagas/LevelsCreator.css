@@ -1,0 +1,20 @@
+.base {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  overflow: hidden;
+}
+
+.base_moments {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.base_title {
+  color: aliceblue;
+  text-align: center;
+  margin-bottom: 15px;
+}

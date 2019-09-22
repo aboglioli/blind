@@ -20,7 +20,7 @@
     "jsx": "react"
   },
   "include": [
-    "src"
+    "src", "lib"
   ],
   "exclude": [
       "**/__tests__/*",

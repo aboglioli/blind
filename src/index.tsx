@@ -1,16 +1,9 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 import './index.css';
-import Main from './ui/Main';
-import { EventManagerProvider } from './ui/context';
+import LevelsCreator from './sagas/LevelsCreator.js';
 
-import startGame from './game';
-
-const events = startGame();
-
-ReactDOM.render(
-  <EventManagerProvider events={events}>
-    <Main />
-  </EventManagerProvider>,
+render(
+    <LevelsCreator />,
   document.getElementById('root'),
 );
